@@ -45,7 +45,8 @@ def guangdian():
 
         screencap()
         img = Image.open('618winners.png')
-        # 两种不同的店铺展示页面
+        # 三种不同的店铺展示页面
+        # print(img.getpixel((970, 1288)))
         if img.getpixel((970, 1110)) == (192, 48, 86, 255):
             os.system('adb shell input tap 970 1110')   # 点击得喵币
             print('成功抓到猫猫啦，现在返程')
@@ -58,16 +59,22 @@ def guangdian():
             time.sleep(1)
             goback()
             time.sleep(1)
+        elif img.getpixel((970, 1288)) == (57, 27, 28, 255):
+            os.system('adb shell input tap 970 1288')   # 点击得喵币
+            print('成功抓到猫猫啦，现在返程')
+            time.sleep(1)
+            goback()
+            time.sleep(1)
         else:
             print('已完成 {} 次去逛店任务'.format(i))
             break
     print('已完成逛店铺找猫猫得喵币任务')
 
 
-# 浏览会场10秒，三次会场一次家电会场一次小黑盒
+# 共7个会场
 def huichang():
     print('====== 领喵币中心，浏览会场 ======')
-    for i in range(1, 6):
+    for i in range(1, 8):
         initlocal()
         screencap()
         img = Image.open('618winners.png')
@@ -76,19 +83,33 @@ def huichang():
             print('第 {} 次去浏览'.format(i))
             time.sleep(1)
             os.system('adb shell input tap 900 1288')   # 点击去浏览
-            print('进入会场，浏览中，请等待 13 秒')
-            time.sleep(13)
-            if i == 4:  # 第四次是家电会场，需点击得喵币
-                os.system('adb shell input tap 970 1110')  # 点击得喵币
-                print('成功抓到猫猫啦，现在返程')
-                time.sleep(1)
+            if i < 4:
+                print('进入会场，浏览中，请等待 13 秒')
+                time.sleep(13)
+            if i == 4:  # 第四次是榜单会场签到
+                print('进入榜单会场，浏览中，请等待 3 秒')
+                time.sleep(3)
             if i == 5:  # 第五次是小黑盒会场，需点击得喵币
+                print('进入小黑盒会场')
+                time.sleep(2)
                 os.system('adb shell input tap 970 1500')  # 点击开盒领喵币图标
                 time.sleep(3)
                 os.system('adb shell input tap 555 1260')  # 点击开盒领喵币按钮
                 print('成功领到喵币，现在返程')
                 time.sleep(1)
                 goback()
+                time.sleep(1)
+            if i == 6:  # 第六次是汽车用品会场，需点击得喵币
+                print('进入汽车用品会场，浏览中，请等待 13 秒')
+                time.sleep(13)
+                os.system('adb shell input tap 970 1260')  # 点击得喵币
+                print('成功抓到猫猫啦，现在返程')
+                time.sleep(1)
+            if i == 7:  # 第七次是食品酒水会场，需点击得喵币
+                print('进入食品酒水会场，浏览中，请等待 13 秒')
+                time.sleep(13)
+                os.system('adb shell input tap 970 1260')  # 点击得喵币
+                print('成功抓到猫猫啦，现在返程')
                 time.sleep(1)
             goback()
         else:
@@ -101,7 +122,7 @@ def huichang():
 # 浏览聚划算会场、特卖会场
 def juhuasuan():
     print('====== 领喵币中心，浏览聚划算 ======')
-    for i in range(1, 4):
+    for i in range(1, 3):
         initlocal()
         screencap()
         img = Image.open('618winners.png')
@@ -113,18 +134,18 @@ def juhuasuan():
             if i == 1:  # 第二次是进特卖会场，需点击得喵币
                 print('进入聚划算会场，浏览三个商品')
                 time.sleep(5)
-                os.system('adb shell input tap 960 1200')   # 跳转商品列表页
+                os.system('adb shell input tap 960 1590')   # 跳转商品列表页
                 time.sleep(2)
                 print('点击第一个商品')
-                os.system('adb shell input tap 290 640')   # 点击第一个商品
+                os.system('adb shell input tap 290 1000')   # 点击第一个商品
                 time.sleep(2)
                 goback()
                 print('点击第二个商品')
-                os.system('adb shell input tap 800 640')   # 点击第二个商品
+                os.system('adb shell input tap 800 1000')   # 点击第二个商品
                 time.sleep(2)
                 goback()
                 print('点击第三个商品')
-                os.system('adb shell input tap 290 1400')   # 点击第三个商品
+                os.system('adb shell input tap 290 1700')   # 点击第三个商品
                 time.sleep(2)
                 goback()
                 print('成功获得喵币，现在返程')
